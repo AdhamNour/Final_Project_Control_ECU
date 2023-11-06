@@ -14,7 +14,7 @@
 /*******************************************************************************
  *                                Definitions                                  *
  *******************************************************************************/
-#define LCD_DATA_BITS_MODE 8
+#define LCD_DATA_BITS_MODE 4
 
 #if((LCD_DATA_BITS_MODE != 4) && (LCD_DATA_BITS_MODE != 8))
 /* The number of the data bits can be only 8 bits and 4 bits */
@@ -23,17 +23,17 @@
 #endif
 
 /*LCD Ports and Pins*/
-#define LCD_RS_PORT_ID                 PORTD_ID
+#define LCD_RS_PORT_ID                 PORTA_ID
 #define LCD_RS_PIN_ID                  PIN0_ID
 
-#define LCD_ENABLE_PORT_ID			   PORTD_ID
-#define LCD_ENABLE_PIN_ID			   PIN2_ID
+#define LCD_ENABLE_PORT_ID			   PORTA_ID
+#define LCD_ENABLE_PIN_ID			   PIN1_ID
 
-#define LCD_DATA_PORT_ID               PORTC_ID
+#define LCD_DATA_PORT_ID               PORTA_ID
 
 #if (LCD_DATA_BITS_MODE == 4)
 
-#define LCD_FIRST_DATA_PIN_ID                 PIN3_ID
+#define LCD_FIRST_DATA_PIN_ID                 PIN2_ID
 
 
 #endif

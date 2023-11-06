@@ -18,6 +18,8 @@ RM := rm -rf
 -include HAL/LCD/subdir.mk
 -include HAL/External_EEPROM/subdir.mk
 -include HAL/DC_Motor/subdir.mk
+-include HAL/Buzzer/subdir.mk
+-include Application/HMI/subdir.mk
 -include Application/subdir.mk
 -include subdir.mk
 -include objects.mk
