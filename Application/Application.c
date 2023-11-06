@@ -10,12 +10,41 @@
 
 #include "../MCAL/TWI/TWI.h"
 
+static uint8 password[7] = { 0 };
+
+static void savePassword() {
+	register uint8 i = 0;
+	HMI_recivePassword(password);
+	while (password[i] != '\0') {
+		EEPROM_writeByte(0x0000 + i, password[i]);
+		_delay_ms(20);
+		i++;
+	}
+
+}
+
+static void checkPassword() {
+	register uint8 i = 0;
+	static uint8 storedPassword;
+	HMI_recivePassword(password);
+
+	for (i = 0; i < 5; ++i) {
+		EEPROM_readByte(0x0000 + i, &storedPassword);
+		if (storedPassword != password[i]) {
+			HMI_sendPasswordStatus(HMI_WRONG_PASSWORD);
+			return;
+		}
+		_delay_ms(20);
+
+	}
+	HMI_sendPasswordStatus(HMI_CORRECT_PASSWORD);
+}
+
 void Application_Setup() {
-	uint8 i;
 	TWI_ConfigType twi_config;
 
-	twi_config.bit_rate=400;
-	twi_config.address=0x01;
+	twi_config.bit_rate = 400;
+	twi_config.address = 0x01;
 
 	TWI_init(&twi_config);
 
@@ -26,11 +55,18 @@ void Application_Setup() {
 }
 
 void Application_Loop() {
-	static receivedPassword[6]={0};
-	HMI_recivePassword(receivedPassword);
-	LCD_displayString(receivedPassword);
-	Buzzer_on();
-	_delay_ms(500);
-	Buzzer_off();
-	_delay_ms(500);
+	static HMICommand cmd;
+	cmd = HMI_recieveCommand();
+	switch (cmd) {
+	case HMI_SET_PASSWORD:
+		//save the password to the EEPROM
+		savePassword();
+		break;
+	case HMO_CHECK_PASSWORD:
+		// check the password
+		checkPassword();
+
+	default:
+		break;
+	}
 }

@@ -17,7 +17,17 @@ void HMI_init(){
 
 }
 
+HMICommand HMI_recieveCommand(){
+	return UART_recieveByte();
+
+}
+
 void HMI_recivePassword(uint8* str){
 	UART_receiveString(str);
 }
+void HMI_sendPasswordStatus(const PasswordStatus passwordStatus){
+	UART_sendByte(passwordStatus);
+
+}
+
 
