@@ -40,6 +40,14 @@ static void checkPassword() {
 	HMI_sendPasswordStatus(HMI_CORRECT_PASSWORD);
 }
 
+static void openDoor(){
+	if(HMI_recieveCommand()==HMI_OPEN_DOOR){
+		HMI_sendDoorStatus(DOOR_OPEN);
+		_delay_ms(30000);
+		HMI_sendDoorStatus(DOOR_CLOSED);
+	}
+}
+
 void Application_Setup() {
 	TWI_ConfigType twi_config;
 
@@ -65,6 +73,8 @@ void Application_Loop() {
 	case HMO_CHECK_PASSWORD:
 		// check the password
 		checkPassword();
+		openDoor();
+		break;
 
 	default:
 		break;
