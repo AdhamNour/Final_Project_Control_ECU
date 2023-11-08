@@ -7,14 +7,18 @@
 
 #include "Timer1.h"
 
+#include "../../HAL/LCD/LCD.h"
+
 #include <avr/io.h>
 #include <avr/interrupt.h>
+#include "stdlib.h"
 #define LED_PIN PD0 // define the pin for the LED
 
 static void (*callBackPointer)(void);
-static volatile uint8_t led_state = 0; // variable to store the LED state
 
 void Timer1_init(const Timer1_ConfigType const *Config_Ptr) {
+	DDRB|=1<<0;
+	PORTB=0;
 	TCNT1 = Config_Ptr->initial_value;
 	switch (Config_Ptr->mode) {
 	case TIMER1_NORMAL:
@@ -59,14 +63,20 @@ void Timer1_deInit(void) {
 
 ISR(TIMER1_COMPA_vect) // interrupt service routine for Timer1 compare match A
 {
+	PORTB^=1<<0;
 	callBackPointer();
 }
 
 ISR(TIMER1_OVF_vect) // interrupt service routine for Timer1 Over Flow
 {
+	LCD_clearScreen();
+	LCD_displayString("TIMER1_OVF_vect");
 	callBackPointer();
 }
 ISR(TIMER1_CAPT_vect) // interrupt service routine for Timer1 Over Flow
 {
+	LCD_clearScreen();
+	LCD_displayString("TIMER1_CAPT_vect");
+
 	callBackPointer();
 }

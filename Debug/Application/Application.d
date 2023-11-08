@@ -10,8 +10,14 @@ Application/Application.o Application/Application.o:  \
   ../Application/../HAL/LCD/LCD.h \
   ../Application/../HAL/LCD/../../std_types.h \
   ../Application/../HAL/LCD/../../MCAL/GPIO/gpio.h \
+  ../Application/../HAL/DC_Motor/DC_Motor.h \
+  ../Application/../HAL/DC_Motor/../../MCAL/GPIO/gpio.h \
+  ../Application/../HAL/DC_Motor/../../MCAL/PWM_Timer0/PWM_Timer0.h \
+  ../Application/../HAL/DC_Motor/../../MCAL/PWM_Timer0/../../std_types.h \
   ../Application/../MCAL/TWI/TWI.h \
-  ../Application/../MCAL/TWI/../../std_types.h
+  ../Application/../MCAL/TWI/../../std_types.h \
+  ../Application/../MCAL/Timer1/Timer1.h \
+  ../Application/../MCAL/Timer1/../../std_types.h
 
 ../Application/Application.h:
 
@@ -37,6 +43,18 @@ Application/Application.o Application/Application.o:  \
 
 ../Application/../HAL/LCD/../../MCAL/GPIO/gpio.h:
 
+../Application/../HAL/DC_Motor/DC_Motor.h:
+
+../Application/../HAL/DC_Motor/../../MCAL/GPIO/gpio.h:
+
+../Application/../HAL/DC_Motor/../../MCAL/PWM_Timer0/PWM_Timer0.h:
+
+../Application/../HAL/DC_Motor/../../MCAL/PWM_Timer0/../../std_types.h:
+
 ../Application/../MCAL/TWI/TWI.h:
 
 ../Application/../MCAL/TWI/../../std_types.h:
+
+../Application/../MCAL/Timer1/Timer1.h:
+
+../Application/../MCAL/Timer1/../../std_types.h:

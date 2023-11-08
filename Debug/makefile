@@ -70,7 +70,7 @@ main-build: Final_Project_Control_ECU.elf secondary-outputs
 Final_Project_Control_ECU.elf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: AVR C Linker'
-	avr-gcc -Wl,-Map,Final_Project_Control_ECU.map -mmcu=atmega16 -o "Final_Project_Control_ECU.elf" $(OBJS) $(USER_OBJS) $(LIBS)
+	avr-gcc -Wl,-Map,Final_Project_Control_ECU.map -mmcu=atmega32 -o "Final_Project_Control_ECU.elf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -82,7 +82,7 @@ Final_Project_Control_ECU.lss: Final_Project_Control_ECU.elf makefile objects.mk
 
 sizedummy: Final_Project_Control_ECU.elf makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Invoking: Print Size'
-	-avr-size --format=avr --mcu=atmega16 Final_Project_Control_ECU.elf
+	-avr-size --format=avr --mcu=atmega32 Final_Project_Control_ECU.elf
 	@echo 'Finished building: $@'
 	@echo ' '
 
